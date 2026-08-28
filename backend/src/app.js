@@ -19,6 +19,9 @@ import closureDateRoutes from "./routes/closureDateRoutes.js";
 import fontRoutes from "./routes/fontRoutes.js";
 import userRoutes from "./routes/users.js";
 
+import swaggerUi from "swagger-ui-express"
+import swaggerDocument from "./utils/SwaggerEjercicio.json" with {type: "json"}
+
 const app = express();
 
 app.use(
@@ -55,5 +58,7 @@ app.use("/api/fonts", fontRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
+
+app.use("/api/-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 export default app;
